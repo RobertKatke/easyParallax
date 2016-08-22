@@ -7,13 +7,11 @@
  * @category jQuery plugin
  * @description easy scrolling parallax and background-attachment parallax
 
- * to do
- * - load following images directly when element is 100% height
-
  * changelog
 
  * 0.3.1
  * - load images directly when in viewport
+ * - round up the scroll values
 
  * 0.3.0
  * - fix fixed parallax version in Firefox
@@ -94,7 +92,7 @@
 			** load image when next element directly on bottom or when element in viewport
 			**/
 
-			if($(elm).offset().top <= wHeight || $(elm).offset().top-wHeight <= $(window).scrollTop()) {
+			if($(elm).offset().top <= wHeight || $(elm).offset().top - wHeight <= $(window).scrollTop()) {
 				$(this).find($(scrollElm)).css({
 					'background': 'url('+$(this).attr('data-image')+')',
 					'backgroundSize': 'cover'
@@ -125,7 +123,7 @@
 					var currentScroll = $(this).scrollTop();
 
 					// define the the scroll speed for top parallax on websites
-					var topStart = (currentScroll - offsetSelf) / parseInt(settings.speed);
+					var topStart = (currentScroll - offsetSelf) / Math.round(settings.speed);
 
 					if(settings.position == 'top') {	
 
