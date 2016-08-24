@@ -32,11 +32,9 @@ Reminder for me: Auch über JavaScript steuerbar hinzufüüüüügenüününü
 |effect   |scroll            |"scroll", "fixed" *(background-attachment: fixed)*|
 |text     |false             |boolean               |
 |position |default           |You can change the value to "top" when the first parallax is directly on top of the website|
-|imageposition|center        | Innnofffffoo fehlt |
+|imageposition|center        | Change the image position like css style (center top, center bottom, left top, ... etc) |
 
 
 
 
 Demo page coming soon
-
-Note: *All images are from [unsplash.com](https://unsplash.com)*
