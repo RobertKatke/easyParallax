@@ -2,7 +2,7 @@
 
  * jQuery easyParallax
  * @author Robert Katke
- * @version 0.3.1 beta
+ * @version 0.4 beta
  * @date May 10, 2016
  * @category jQuery plugin
  * @description easy scrolling parallax and background-attachment parallax
