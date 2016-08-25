@@ -20,7 +20,7 @@ Note: *no JavaScript call is needed*
 ##Options
 ###via data-attributes
 You can easily add options by adding ```data-key="option"``` to the element you want to use.  
-**Note: For data attributes, append the option name to *data-*.**
+**Note: For data attributes, append the key to *data-*.**
 ```html
 <div class="parallax" data-effect="scroll" data-image-src="/path/image.jpg"></div>
 ```
