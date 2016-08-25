@@ -19,14 +19,14 @@ Note: *no JavaScript call is needed*
 
 ##Options
 ###via data-attributes
-You can easily add options by adding ```data-option-name="option"``` to the element you want to use.  
+You can easily add options by adding ```data-key="option"``` to the element you want to use.  
 **Note: For data attributes, append the option name to *data-*.**
 ```html
 <div class="parallax" data-effect="scroll" data-image-src="/path/image.jpg"></div>
 ```
 
 
-|Key      | Default value    |    Description      |
+|Key      | Default value / option    |    Description      |
 |:-----   |:-----------------|:--------------------|
 |speed    |6                 |Change easily the speed by update the count of number|
 |effect   |scroll            |"scroll", "fixed" *(background-attachment: fixed)*|
