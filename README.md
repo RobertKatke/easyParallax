@@ -11,7 +11,8 @@ Download this package and include *easy.parallax.min.js* in your document
 ```
 
 ## Usage
-You can easily call the plugin by using the class *parallax*
+You can easily call the plugin by using the class *parallax*  
+*no JavaScript call is needed*
 ```html
 <div class="parallax" data-effect="scroll"></div>
 ```
@@ -24,7 +25,6 @@ You can easily add options by adding ```data-option-name="option"``` to the elem
 <div class="parallax" data-effect="scroll" data-image-src="/path/image.jpg"></div>
 ```
 
-Reminder for me: Auch über JavaScript steuerbar hinzufüüüüügenüününü
 
 |Key      | Default value    |    Description      |
 |:-----   |:-----------------|:--------------------|
