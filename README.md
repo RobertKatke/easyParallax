@@ -12,7 +12,7 @@ Download this package and include *easy.parallax.min.js* in your document
 
 ## Usage
 You can easily call the plugin by using the class *parallax*  
-*no JavaScript call is needed*
+Note: *no JavaScript call is needed*
 ```html
 <div class="parallax" data-effect="scroll"></div>
 ```
