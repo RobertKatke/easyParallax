@@ -7,36 +7,21 @@
  * @category jQuery plugin
  * @description easy scrolling parallax and background-attachment parallax
 
- * changelog
-
- * 0.3.1
- * - load images directly when in viewport
- * - round up the scroll values
-
- * 0.3.0
- * - fix fixed parallax version in Firefox
- * - add text elements for scrolling
-
- * 0.2.1
- * - fix parallax width
- * - fix overflow hidden problem
-
- * 0.2
- * - load images over data-image
- * - change the scrolling effect, when parallax position >= 0
-
 **/
+
 (function(e){
 	e.fn.easyParallax = function(params) {
-		
+
+		// default style for element
 		var self 	= this.css({
 			'zIndex': '-1',
 			'width': '100%',
 			'overflow': 'hidden',
 			'position': 'relative'
 		});
+
+		// window height
 		var wHeight = $(window).height();
-		var wHalf	= wHeight / 2;
 
 		self.each(function(i, elm) {
 
@@ -49,7 +34,14 @@
 			// define the top position
 			var offsetSelf = $(elm).offset().top - wHeight;
 
+			// element height
+			var elmHeight = $(elm).outerHeight(true);
+			$(elm).css('height', elmHeight);
 
+			// half height
+			var elmHalfHeight = elmHeight / 2;
+
+			
 			// define scroll element -> is text or not
 			if(settings.text == true) {
 
@@ -63,7 +55,7 @@
 				// add div.scroll-image to each element
 				var scrollElm = $('<div class="scroll-image"></div>').prependTo($(elm)).css({
 					width: '100%',
-					height: $(elm).outerHeight(true)
+					height: elmHeight
 				});
 			}
 
@@ -79,6 +71,7 @@
 				});
 
 				if(settings.text != true) {
+
 					$(this).find($(scrollElm)).css({
 						'background': 'url('+$(this).attr('data-image')+')',
 						'backgroundSize': 'cover',
@@ -92,27 +85,41 @@
 			/**
 			** load image when next element directly on bottom or when element in viewport
 			**/
+			var directStart = -(elmHalfHeight - Math.round(($(window).scrollTop() - offsetSelf) / 2));
 
 			if($(elm).offset().top <= wHeight || $(elm).offset().top - wHeight <= $(window).scrollTop()) {
-				var directStart = -(wHalf - Math.round(($(window).scrollTop() - offsetSelf) / 2));
 				
 				if(settings.effect == 'fixed' || settings.position == 'top') {
+
 					$(this).find($(scrollElm)).css({
 						'background': 'url('+$(this).attr('data-image')+') center fixed',
 						'backgroundSize': 'cover'
 					});
+
 				}else{
+
 					$(this).find($(scrollElm)).css({
 						'background': 'url('+$(this).attr('data-image')+')',
 						'backgroundSize': 'cover',
-						'transform': 'translate3D(0,'+directStart+'px,0)'
+						'transform': 'translate3D(0,'+directStart+'px,0)',
+						'position': 'absolute',
+						'top': 0,
+						'left': 0
 					});
+
 				}
 			}
 
 
 			// If effect = scroll
 			if(settings.effect == 'scroll') {
+
+				// set the negative position for the image
+				if(settings.position != 'top') {
+					$(scrollElm).css({
+						'transform': 'translate3D(0,'+directStart+'px,0)',
+					});
+				}
 
 				// start scroll function for scrolling effect
 				$(window).scroll(function(){
@@ -134,36 +141,46 @@
 					}else{
 
 						// define the scroll speed to show the complete image by scrolling
-						var start = -(wHalf - Math.round((currentScroll - offsetSelf) / 2));
+						var start = -(elmHalfHeight - Math.round((currentScroll - offsetSelf) / 2));
 
 						// load data-image to .scroll-image 400px before the element are in viewport
 						if(currentScroll >= (offsetSelf - 400)) {
+
 							if(settings.text == true) {
 								scrollElm.css({
 									'height': 'auto'
 								});
+
 							}else{
+
 								scrollElm.css({
 									'background': 'url('+$(elm).attr('data-image')+')'+settings.imageposition,
 									'backgroundSize': 'cover',
 									'position': 'absolute',
 									'top': 0,
-									'transform': 'translate3D(0,-'+wHalf+'px,0)'
+									'transform': 'translate3D(0,-'+elmHalfHeight+'px,0)'
 								});
+
 							}
 						}
 
 						// start the parallax when element are in viewport
 						if(currentScroll >= offsetSelf) {	
+
 							if(settings.text == true) {
+
 								scrollElm.css({
 									'transform': 'translate3D(0,'+start+'px,0)'
 								});
-							}else{					
+
+							}else{	
+
 								scrollElm.css({
 									'transform': 'translate3D(0,'+start+'px,0)'
 								});
+
 							}
+
 						}
 					}
 
@@ -181,10 +198,12 @@
 
 					// load data-image to .scroll-image
 					if(currentScroll >= (offsetSelf - 400)) {
+
 						scrollElm.css({
 							'background': 'url('+$(elm).attr('data-image')+') center fixed',
 							'backgroundSize': 'cover'
 						});
+
 					}
 				});
 
@@ -204,8 +223,7 @@
 
 	// default settings
 	// can be overwriten by data-attributes
-	e.fn.easyParallax.defaultSettings =
-	{
+	e.fn.easyParallax.defaultSettings = {
 		speed: 6,
 		effect: 'scroll',
 		position: 'default',

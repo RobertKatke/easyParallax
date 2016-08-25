@@ -1,0 +1,25 @@
+ **
+ * changelog
+ **
+
+ * 0.4
+ * - change offset position of parallax images for better calculating the perfect clipping bei auto height of element
+
+ * 0.3.1
+ * - load images directly when in viewport
+ * - round up the scroll values
+
+ * 0.3.0
+ * - fix fixed parallax version in Firefox
+ * - add text elements for scrolling
+
+ * 0.2.1
+ * - fix parallax width
+ * - fix overflow hidden problem
+
+ * 0.2
+ * - load images over data-image
+ * - change the scrolling effect, when parallax position >= 0
+
+ * 0.1
+ * - first release
