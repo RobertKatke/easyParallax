@@ -33,6 +33,7 @@ You can easily add options by adding ```data-key="option"``` to the element you 
 |text     |false             |boolean               |
 |position |default           |You can change the value to "top" when the first parallax is directly on top of the website|
 |imageposition|center        | Change the image position like css style (center top, center bottom, left top, ... etc) |
+|zindex | -1 | Change the z-index position|
 
 
 
