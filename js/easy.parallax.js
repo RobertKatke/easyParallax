@@ -68,7 +68,9 @@
 
 				$(this).css({
 					'position': 'fixed',
-					'height': '100%'
+					'height': '100%',
+					'top': 0,
+					'left': 0
 				});
 
 				if(settings.text != true) {
@@ -93,7 +95,7 @@
 				if(settings.effect == 'fixed' || settings.position == 'top') {
 
 					$(this).find($(scrollElm)).css({
-						'background': 'url('+$(this).attr('data-image-src')+') center fixed',
+						'background': 'url('+$(this).attr('data-image-src')+')'+settings.imageposition+' fixed',
 						'backgroundSize': 'cover'
 					});
 
@@ -132,9 +134,9 @@
 					// define the the scroll speed for top parallax on websites
 					var topStart = (currentScroll - offsetSelf) / Math.round(settings.speed);
 
+					// scrolling when parallax is top on websites
 					if(settings.position == 'top') {	
 
-						// scrolling when parallax is top on websites
 						if(currentScroll >= offsetSelf) {
 							scrollElm.css({
 								'transform': 'translate3D(0,-'+topStart+'px,0)'
@@ -202,7 +204,7 @@
 					if(currentScroll >= (offsetSelf - 400)) {
 
 						scrollElm.css({
-							'background': 'url('+$(elm).attr('data-image-src')+') center fixed',
+							'background': 'url('+$(elm).attr('data-image-src')+')'+settings.imageposition+' fixed',
 							'backgroundSize': 'cover'
 						});
 
@@ -215,7 +217,7 @@
 					'height': '100vh',
 					'width': '100%',
 					'backgroundSize': 'cover',
-					'backgroundPosition': 'center fixed',
+					'backgroundPosition': settings.imageposition+' fixed',
 					'zIndex': settings.zindex
 				});
 			}		

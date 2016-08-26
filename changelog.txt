@@ -2,7 +2,8 @@
  * changelog
  **
 
- * TO DO: Object - fit
+ * TO DO: 
+ * - Object - fit
 
  * 0.5 
  * - change data-image to data-image-src
