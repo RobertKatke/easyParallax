@@ -2,7 +2,7 @@
 
  * jQuery easyParallax
  * @author Robert Katke
- * @version 0.4 beta
+ * @version 0.5 beta
  * @date May 10, 2016
  * @category jQuery plugin
  * @description easy scrolling parallax and background-attachment parallax
@@ -12,13 +12,7 @@
 (function(e){
 	e.fn.easyParallax = function(params) {
 
-		// default style for element
-		var self 	= this.css({
-			'zIndex': '-1',
-			'width': '100%',
-			'overflow': 'hidden',
-			'position': 'relative'
-		});
+		var self = this;
 
 		// window height
 		var wHeight = $(window).height();
@@ -31,6 +25,14 @@
 			// override settings when inline data-attributes are set
 			settings = $.extend({}, settings, $(elm).data());
 
+			// default style for element
+			$(elm).css({
+				'zIndex': settings.zindex,
+				'width': '100%',
+				'overflow': 'hidden',
+				'position': 'relative'
+			})
+
 			// define the top position
 			var offsetSelf = $(elm).offset().top - wHeight;
 
@@ -41,13 +43,12 @@
 			// half height
 			var elmHalfHeight = elmHeight / 2;
 
-			
 			// define scroll element -> is text or not
 			if(settings.text == true) {
 
 				var scrollElm = $(elm).removeAttr('style').css({
 					'position': 'absolute',
-					'zIndex': -1
+					'zIndex': settings.zindex
 				});
 
 			}else{
@@ -73,7 +74,7 @@
 				if(settings.text != true) {
 
 					$(this).find($(scrollElm)).css({
-						'background': 'url('+$(this).attr('data-image')+')',
+						'background': 'url('+$(this).attr('data-image-src')+')',
 						'backgroundSize': 'cover',
 						'height': '100%',
 						'transform': 'none'
@@ -92,14 +93,14 @@
 				if(settings.effect == 'fixed' || settings.position == 'top') {
 
 					$(this).find($(scrollElm)).css({
-						'background': 'url('+$(this).attr('data-image')+') center fixed',
+						'background': 'url('+$(this).attr('data-image-src')+') center fixed',
 						'backgroundSize': 'cover'
 					});
 
 				}else{
 
 					$(this).find($(scrollElm)).css({
-						'background': 'url('+$(this).attr('data-image')+')',
+						'background': 'url('+$(this).attr('data-image-src')+')',
 						'backgroundSize': 'cover',
 						'transform': 'translate3D(0,'+directStart+'px,0)',
 						'position': 'absolute',
@@ -117,7 +118,8 @@
 				// set the negative position for the image
 				if(settings.position != 'top') {
 					$(scrollElm).css({
-						'transform': 'translate3D(0,'+directStart+'px,0)',
+						'transform': 'translate3D(0,-'+elmHalfHeight+'px,0)',
+						'zIndex': settings.zindex
 					});
 				}
 
@@ -143,7 +145,7 @@
 						// define the scroll speed to show the complete image by scrolling
 						var start = -(elmHalfHeight - Math.round((currentScroll - offsetSelf) / 2));
 
-						// load data-image to .scroll-image 400px before the element are in viewport
+						// load data-image-src to .scroll-image 400px before the element are in viewport
 						if(currentScroll >= (offsetSelf - 400)) {
 
 							if(settings.text == true) {
@@ -154,7 +156,7 @@
 							}else{
 
 								scrollElm.css({
-									'background': 'url('+$(elm).attr('data-image')+')'+settings.imageposition,
+									'background': 'url('+$(elm).attr('data-image-src')+')'+settings.imageposition,
 									'backgroundSize': 'cover',
 									'position': 'absolute',
 									'top': 0,
@@ -196,11 +198,11 @@
 					// current scroll position
 					var currentScroll = $(this).scrollTop();
 
-					// load data-image to .scroll-image
+					// load data-image-src to .scroll-image
 					if(currentScroll >= (offsetSelf - 400)) {
 
 						scrollElm.css({
-							'background': 'url('+$(elm).attr('data-image')+') center fixed',
+							'background': 'url('+$(elm).attr('data-image-src')+') center fixed',
 							'backgroundSize': 'cover'
 						});
 
@@ -214,7 +216,7 @@
 					'width': '100%',
 					'backgroundSize': 'cover',
 					'backgroundPosition': 'center fixed',
-					'zIndex': -1
+					'zIndex': settings.zindex
 				});
 			}		
 			
@@ -228,7 +230,8 @@
 		effect: 'scroll',
 		position: 'default',
 		text: false,
-		imageposition: 'center'
+		imageposition: 'center',
+		zindex: '-1'
 	};
 	$(document).ready(function() {
 		$('.parallax').easyParallax();

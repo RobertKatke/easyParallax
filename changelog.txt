@@ -2,6 +2,12 @@
  * changelog
  **
 
+ * TO DO: Object - fit
+
+ * 0.5 
+ * - change data-image to data-image-src
+ * - add new option "zindex"
+
  * 0.4
  * - change offset position of parallax images for better calculating the perfect clipping bei auto height of element
 
