@@ -1,6 +1,6 @@
 {
   "name": "easyparallax",
-  "homepage": "hhttps://github.com/RobertKatke/easyParallax",
+  "homepage": "https://github.com/RobertKatke/easyParallax",
   "description": "a easy jQuery plugin.",
   "main": "js/easy.parallax.js",
   "moduleType": [],
