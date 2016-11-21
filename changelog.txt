@@ -5,6 +5,9 @@
  * TO DO: 
  * - Object - fit
 
+ * 0.5.1
+ * -add position absolute to fixed scroll effect
+
  * 0.5 
  * - change data-image to data-image-src
  * - add new option "zindex"

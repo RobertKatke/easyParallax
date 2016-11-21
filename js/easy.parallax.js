@@ -2,7 +2,7 @@
 
  * jQuery easyParallax
  * @author Robert Katke
- * @version 0.5 beta
+ * @version 0.5.1 beta
  * @date May 10, 2016
  * @category jQuery plugin
  * @description easy scrolling parallax and background-attachment parallax
@@ -218,7 +218,8 @@
 					'width': '100%',
 					'backgroundSize': 'cover',
 					'backgroundPosition': settings.imageposition+' fixed',
-					'zIndex': settings.zindex
+					'zIndex': settings.zindex,
+					'position': 'absolute'
 				});
 			}		
 			
